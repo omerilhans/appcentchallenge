@@ -41,7 +41,7 @@ class RecentPhotosFragment : BaseFragment<FragmentRecentPhotosBinding, MainViewM
             handler = this@RecentPhotosFragment.viewModel
 
             recyclerRecentlyPhotos.adapter = adapter
-            recyclerRecentlyPhotos.layoutManager = AutoFitGridLayoutManager(context)
+            recyclerRecentlyPhotos.layoutManager = AutoFitGridLayoutManager(requireContext())
             swipeRefreshLayoutRecentPhotos.setOnRefreshListener(this@RecentPhotosFragment)
         }
     }
