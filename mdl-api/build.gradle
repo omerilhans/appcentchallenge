@@ -1,0 +1,74 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion versions.sdk.compile
+    buildToolsVersion versions.android.buildtools
+
+    def versionPropsFile = file('mdl_version.properties')
+    if (!versionPropsFile.canRead()) {
+        throw new GradleException("Could not read mdl_version.properties!")
+    }
+
+    Properties versionProps = new Properties()
+    versionProps.load(new FileInputStream(versionPropsFile))
+
+    def versionMajor = versionProps['version_major'].toInteger()
+    def versionMinor = versionProps['version_minor'].toInteger()
+    def versionPatch = versionProps['version_patch'].toInteger()
+    def versionBuild = versionProps['version_build'].toInteger()
+
+    def taskNames = gradle.startParameter.taskNames
+    String currentDir = gradle.startParameter.currentDir
+
+    if (currentDir.endsWith(project.name) && ('bundle' in taskNames || 'assemble' in taskNames)) {
+        println "+ Task names are $taskNames"
+        versionBuild++
+        versionProps['version_build'] = versionBuild.toString()
+        versionProps.store(versionPropsFile.newWriter(), null)
+        println "+ The build number is $versionBuild for ${project.name}"
+    }
+
+    defaultConfig {
+        minSdkVersion versions.sdk.minSdkVersion
+        targetSdkVersion versions.sdk.target
+        versionCode versionBuild
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        debug{
+            buildConfigField 'String', 'KEY_API_VALUE', '"b6a57edcc748369771434a908122cf28"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            buildConfigField 'String', 'KEY_API_VALUE', '"b6a57edcc748369771434a908122cf28"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs = ['src/main/kotlin']
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin.base"
+
+    // Google Gson
+    api "com.google.code.gson:gson:$versions.google.gson"
+
+    // Retrofit
+    api "com.squareup.retrofit2:retrofit:$versions.square.retrofit2"
+
+    // Reactive X
+    api "io.reactivex.rxjava2:rxjava:$versions.rxjava.base"
+    api "io.reactivex.rxjava2:rxandroid:$versions.rxjava.android"
+}
