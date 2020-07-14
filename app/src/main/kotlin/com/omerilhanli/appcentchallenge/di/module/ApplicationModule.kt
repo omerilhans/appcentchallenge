@@ -9,6 +9,9 @@ import dagger.Module
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
+/**
+ * Tüm eklenen modüller için context sağlayan modüldür.
+ */
 @Module(
     includes = [
         AndroidSupportInjectionModule::class,

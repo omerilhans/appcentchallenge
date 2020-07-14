@@ -7,11 +7,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Her RecyclerView componenti için gerekli binding ve mDataList ikilisi, inheritance esnasında
+ * oluşturulur. RecyclerView için gerekli adapter'e base yapı sağlar.
+ */
 abstract class BaseAdapter<VH : RecyclerView.ViewHolder, D>(var mDataList: ArrayList<D>? = null) :
     RecyclerView.Adapter<VH>() {
 
     lateinit var binding: ViewDataBinding
 
+    /**
+     * Overrirde edilerek, binding nesnesi onCreateView esnasında initialize edilir.
+     */
     @LayoutRes
     open var itemLayoutId: Int = 0
 
@@ -26,11 +33,17 @@ abstract class BaseAdapter<VH : RecyclerView.ViewHolder, D>(var mDataList: Array
 
     override fun getItemCount() = mDataList?.size ?: 0
 
+    /**
+     * Liste temizlenir
+     */
     fun clear() {
         mDataList?.clear()
         notifyDataSetChanged()
     }
 
+    /**
+     * Listeye yeni elemanlar eklenir
+     */
     fun add(newList: ArrayList<D>?) {
         newList?.let {
             mDataList?.addAll(it)

@@ -10,12 +10,18 @@ import com.omerilhanli.appcentchallenge.ui.base.BaseFragment
 import com.omerilhanli.appcentchallenge.ui.detail.DetailActivity
 import com.omerilhanli.appcentchallenge.ui.detail.DetailViewModel
 
+/**
+ * Apiden alınan Photo ve PhotoInfo nesneleri PhotoInfoMap nesnesine map edilir ve
+ * tam ekran olarak gösterilir.
+ */
 class InfoPhotoFragment : BaseFragment<FragmentInfoBinding, DetailViewModel>(), SwipeRefreshLayout.OnRefreshListener {
 
+    // BaseFragment' a gönderilerek onCreateView ile binding instance'ı oluşturulur.
     override var layoutId: Int = R.layout.fragment_info
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // BaseFragment'te üretilen binding için datalar ve configuration'lar set edilir.
         with(binding) {
             lifecycleOwner = this@InfoPhotoFragment
             viewModel = this@InfoPhotoFragment.viewModel
@@ -27,9 +33,11 @@ class InfoPhotoFragment : BaseFragment<FragmentInfoBinding, DetailViewModel>(), 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        // Navigator olarak fragment'in bağlı olduğu DetailActivity sağlanır.
         viewModel.navigator = activity as DetailActivity
 
-        viewModel.photoInfo.observe(viewLifecycleOwner, Observer { response ->
+        // Apiden gelen response'a observe olunur.
+        viewModel.photoInfoLiveData.observe(viewLifecycleOwner, Observer { response ->
             viewModel.photoInfoMap
                 .apply {
                     username = response.photo?.owner?.username
@@ -39,6 +47,9 @@ class InfoPhotoFragment : BaseFragment<FragmentInfoBinding, DetailViewModel>(), 
         })
     }
 
+    /**
+     * Alınan resim aşağı tekrar swipe işlemi ile yenilenir.
+     */
     override fun onRefresh() {
         binding.imgPhoto
             .apply {

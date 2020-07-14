@@ -7,6 +7,11 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
+/**
+ * Tüm modüllerin kullanılarak injection için gerekli instance'ların generate edilmesini sağlayan
+ * Component interface class'ı.
+ * Dependency Injection başlama noktası da denebilir.
+ */
 @Singleton
 @Component(
     modules = [

@@ -2,6 +2,9 @@ package com.omerilhanli.appcentchallenge.asistive.util
 
 import com.omerilhanli.api_mdl.entity.Photo
 
+/**
+ * Son yüklenen resimleri obje property'leri ile image path'i oluşturma sağlayan util class'ı.
+ */
 object PhotoPathUtil {
 
     @JvmStatic

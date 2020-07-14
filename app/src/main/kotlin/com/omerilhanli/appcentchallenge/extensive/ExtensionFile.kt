@@ -10,6 +10,14 @@ import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.omerilhanli.appcentchallenge.R
 
+/**
+ * Bazı yardımcı extension methodların tutulduğu kotlin dosyası
+ */
+
+
+/**
+ * Activity class type verilerek yeni activity başlatan generic extension metodu.
+ */
 fun <T : Parcelable> Activity.startThis(activityClass: Class<*>, intentKey: String = "", intentValue: T? = null, isFinish: Boolean = false) {
     val intent = Intent(this, activityClass)
     intentValue?.let {

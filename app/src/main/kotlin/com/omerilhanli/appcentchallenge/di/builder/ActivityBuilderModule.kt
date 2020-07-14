@@ -8,6 +8,10 @@ import com.omerilhanli.appcentchallenge.ui.main.fragment.RecentPhotosFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
+/**
+ * Tüm activity ve fragment'lerin injection'a katıldığı modüldür.
+ * Her yeni activity ve fragment eklenmelidir.
+ */
 @Module
 abstract class ActivityBuilderModule {
 

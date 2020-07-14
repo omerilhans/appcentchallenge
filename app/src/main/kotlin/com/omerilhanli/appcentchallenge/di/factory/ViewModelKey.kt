@@ -4,6 +4,9 @@ import androidx.lifecycle.ViewModel
 import dagger.MapKey
 import kotlin.reflect.KClass
 
+/**
+ * ViewModel'lerin binds işlemi için gerekli annotation'ı sağlar.
+ */
 @MustBeDocumented
 @Target(
     AnnotationTarget.FUNCTION,

@@ -7,6 +7,10 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
+/**
+ * Api isteklerinden ilgili datayı yönetip client'a sunan repository nesneleri sağlayan Modüldür.
+ * Her yeni repository eklenmelidir.
+ */
 @Module
 object RepositoryModule {
 

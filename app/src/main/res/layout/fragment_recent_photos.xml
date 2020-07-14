@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        app:bindRefreshing="@{viewModel.isLoading()}">
+        app:bindRefreshing="@{viewModel.isLoadingLiveData()}">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_recently_photos"

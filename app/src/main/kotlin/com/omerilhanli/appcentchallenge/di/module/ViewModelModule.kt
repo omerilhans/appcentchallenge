@@ -8,6 +8,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
+/**
+ * Tüm ViewModel'ler için Modül yapısı sunar.
+ * Her eklenen yeni ViewModel için abstract bind metodu eklenmelidir.
+ */
 @Module
 abstract class ViewModelModule {
 

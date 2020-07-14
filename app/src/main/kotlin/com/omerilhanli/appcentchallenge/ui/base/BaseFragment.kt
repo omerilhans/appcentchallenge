@@ -11,6 +11,10 @@ import com.omerilhanli.appcentchallenge.R
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
+/**
+ * Her Fragment parçası için gerekli viewModel ve binding ikilisinin, generic olarak verilen tipler
+ * ve layoutId aracılığıyla oluşturulması sağlanan base class'dır.
+ */
 abstract class BaseFragment<ChildBinding : ViewDataBinding, ChildViewModel : BaseViewModel<*>> :
     DaggerFragment() {
 

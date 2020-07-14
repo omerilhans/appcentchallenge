@@ -7,6 +7,9 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
+/**
+ * ViewModel'lerin injection işlemi için create metodu dagger tarafından kullanılan factory class'ı.
+ */
 @Singleton
 class ViewModelFactory @Inject
 constructor(private val creators: Map<Class<out ViewModel>, Provider<ViewModel>>) :

@@ -14,6 +14,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+/**
+ * Retrofit2 ve Okkhttp aracılığıyla Api instance'ı sağlayan modüldür.
+ */
 @Module
 object NetworkModule {
 
