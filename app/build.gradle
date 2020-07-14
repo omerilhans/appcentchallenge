@@ -100,6 +100,8 @@ dependencies {
 
     // Dagger
     implementation "com.google.dagger:dagger:$versions.google.dagger"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     kapt "com.google.dagger:dagger-compiler:$versions.google.dagger_core"
     kapt "com.google.dagger:dagger-android-processor:$versions.google.dagger_core"
     implementation "com.google.dagger:dagger-android-support:$versions.google.dagger_core"
